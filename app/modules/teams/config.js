@@ -24,14 +24,3 @@ function config($stateProvider) {
 }
 
 export default config;
-
-//template
-
-function config($stateProvider) {
-  $stateProvider
-    .state('pokemon', {
-    url: '/',
-    controller: 'PokemonController as pokemonCtrl',
-    template: require('./view.html')
-  });
-}

@@ -32,26 +32,35 @@ import Character from './Character';
 class TeamsController {
 
 	constructor($http) {
-		this.newTeam = "";
-    this._$http = $http;
-		this.team = [];
+		this._$http = $http;
+		this.name = "";
+    this.characters = [];
 
 	}
 
   addCharacter() {
+		console.log("working")
 		this._$http
 		.get(`http://gateway.marvel.com:80/v1/public/characters${this.newCharacter}?apikey=2a4fd1138bd131ee49b25af36d5f763a`)
-  }
+
 		.then((response) => {
-			this.team.push(response.data);
-			this.newCharacter="";
-		})
+			console.log(response);
+			let character = new Character(respone.data.data.results[0].name,
+																		response.data.data.results[0].description,
+																	 	`${response.data.data.results[0].thumbnail.path}.${response.data.data.results[0].thumbnail.extension}`);
+			this.characters.push(character);
+		});
+	}
 
   deleteCharacter(character) {
-		let confirmed = confirm(`Are you sure${character}`)
-		this.character.splice(this.team.indexOf(character), 1)
+		let confirmed = confirm(`Are you sure${character}`);
+
+		if (confirmed) {
+			this.character.splice(this.team.indexOf(character), 1);
+		}
   }
 
 }
+
 
 export default TeamsController

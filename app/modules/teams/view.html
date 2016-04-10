@@ -1,20 +1,32 @@
-<form ng-hide="teamCtrl.team.length >= 6">
-  <input type="text" placeholder="Character" ng-model="characterCtrl.newCharacter"/>
-  <input type="submit" value="Add Character" ng-click="teamCtrl.addCharacter" />
-</form>
 
-<h1>Your Team ({{ teamCtrl.team.length }}/6)</h1>
+  <h1>Add Characters ({{ teamCtrl.characters.length }}/6)</h1>
 
-<table>
-  <tbody>
-    <tr ng-repeat="character in teamCtrl.team">
-      <td>{{ character.name }}</td>
-      <td>
-        <img ng-src="{{ pokemon.sprites.front_shiny }}" alt="" />
-      </td>
-      <td>
-        <i class="fa fa-times" ng-click="teamCtrl.deleteCharacter"></i>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <form ng-hide="teamCtrl.characters.length >= 6">
+    <input type="text" placeholder="teams" ng-model"teamCtrl.name">
+    <input type="submit" value="Add" ng-click="teamCtrl.addCharacter()">
+  </form>
+
+  <h1>Characters</h1>
+
+  <table>
+    <tbody>
+      <tr ng-repeat="character in teamCtrl.characters">
+        <td id="charcter-img">
+          <img class="image" ng-src="{{ character.image }}">
+        </td>
+        <td id="character-name">
+          {{ character.name }}
+        </td>
+
+        <td id="character-description">
+          {{ charcter.description }}
+        </td>
+
+
+        <td id="delete-character">
+          <i class=" fa fa-times-circle" ng-click="teamCtrl.deleteCharacter(character)"></i>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>

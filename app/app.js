@@ -21,6 +21,9 @@ let App = angular.module('app', ['ui.router', 'tiy.teams']);
 */
 
 function config($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/teams/new')
 }
+
+export default config;
 
 App.config(config);
