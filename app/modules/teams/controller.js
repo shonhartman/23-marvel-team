@@ -39,24 +39,27 @@ class TeamsController {
 	}
 
   addCharacter() {
-		console.log("working")
+		// console.log("working")
 		this._$http
-		.get(`http://gateway.marvel.com:80/v1/public/characters${this.newCharacter}?apikey=2a4fd1138bd131ee49b25af36d5f763a`)
+		.get(`http://gateway.marvel.com:80/v1/public/characters?apikey=2a4fd1138bd131ee49b25af36d5f763a`)
+		// console.log("got get")
+
 
 		.then((response) => {
-			console.log(response);
-			let character = new Character(respone.data.data.results[0].name,
-																		response.data.data.results[0].description,
-																	 	`${response.data.data.results[0].thumbnail.path}.${response.data.data.results[0].thumbnail.extension}`);
-			this.characters.push(character);
-		});
+				let character = new Character(response.data.data.results[0].name, response.data.data.results[0].description, `${response.data.data.results[0].thumbnail.path}.${response.data.data.results[0].thumbnail.extension}`)
+				this.characters.push(character);
+				console.log(this.characters);
+				this.name = "";
+			});
 	}
 
   deleteCharacter(character) {
-		let confirmed = confirm(`Are you sure${character}`);
+		let confirmed = confirm(`Delete ${character.name} ?`);
 
 		if (confirmed) {
-			this.character.splice(this.team.indexOf(character), 1);
+			this.characters.splice(this.characters.indexOf(character), 1);
+			console.log("splice");
+
 		}
   }
 

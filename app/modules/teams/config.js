@@ -18,8 +18,8 @@ function config($stateProvider) {
   $stateProvider
     .state('new_team', {
       url: '/teams/new',
-      controller: 'TeamController as teamCtrl',
-      template: require('/view.html')
+      controller: 'TeamsController as teamCtrl',
+      template: require('./view.html')
     });
 }
 
